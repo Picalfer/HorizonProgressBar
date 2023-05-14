@@ -2,10 +2,12 @@ package com.example.horizonprogressbar
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var startProgress: Button
     private lateinit var textSuccess: TextView
+    private lateinit var ivMain: ImageView
     private var variety = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +26,13 @@ class MainActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         startProgress = findViewById(R.id.startProgress)
         textSuccess = findViewById(R.id.tvSuccess)
+        ivMain = findViewById(R.id.iv_main)
+
+        Picasso.get()
+            .load("https://raccoon-city.ru/wp-content/uploads/2021/06/kyb-eydwdya-e1622731650346.jpg")
+            .placeholder(R.drawable.main_logo)
+            .error(R.drawable.main_logo)
+            .into(ivMain)
 
         progressBar.max = 100
 
