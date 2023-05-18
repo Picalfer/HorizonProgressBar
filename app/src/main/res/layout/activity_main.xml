@@ -16,22 +16,36 @@
         android:contentDescription="@string/logo"
         android:src="@drawable/main_logo" />
 
-    <TextView
-        android:id="@+id/tvSuccess"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="70dp"
-        android:textColor="@color/progress_bar"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        tools:text="3" />
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/icon_red"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:background="@color/progress_bar"
+            android:rotation="45" />
+
+        <TextView
+            android:id="@+id/tvSuccess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/progress_bar"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="3" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
         android:progressDrawable="@drawable/custom_progress_bg"
         tools:progress="20" />
 

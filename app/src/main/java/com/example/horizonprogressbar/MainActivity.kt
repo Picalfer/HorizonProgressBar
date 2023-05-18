@@ -1,6 +1,8 @@
 package com.example.horizonprogressbar
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -13,10 +15,12 @@ class MainActivity : AppCompatActivity() {
 
     private var currentProgress: Int = 0
     private var currentSuccess: Int = 0
+    private var currentRotation: Float = 45F
     private lateinit var progressBar: ProgressBar
     private lateinit var startProgress: Button
     private lateinit var textSuccess: TextView
     private lateinit var ivMain: ImageView
+    private lateinit var iconRed: View
     private var variety = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         startProgress = findViewById(R.id.startProgress)
         textSuccess = findViewById(R.id.tvSuccess)
         ivMain = findViewById(R.id.iv_main)
+        iconRed = findViewById(R.id.icon_red)
 
         Picasso.get()
             .load("https://raccoon-city.ru/wp-content/uploads/2021/06/kyb-eydwdya-e1622731650346.jpg")
@@ -47,6 +52,12 @@ class MainActivity : AppCompatActivity() {
                         )
                     )
                     textSuccess.setTextColor(ContextCompat.getColor(this, R.color.progress_bar_bg))
+                    iconRed.setBackgroundColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.progress_bar_bg
+                        )
+                    )
                     variety = 2
                 } else {
                     progressBar.setProgressDrawableTiled(
@@ -56,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                         )
                     )
                     textSuccess.setTextColor(ContextCompat.getColor(this, R.color.progress_bar))
+                    iconRed.setBackgroundColor(ContextCompat.getColor(this, R.color.progress_bar))
                     variety = 1
                 }
                 currentProgress = 0
@@ -63,8 +75,11 @@ class MainActivity : AppCompatActivity() {
 
             currentProgress += 10
             currentSuccess += 1
+            currentRotation += 45
+
             textSuccess.text = currentSuccess.toString()
             progressBar.progress = currentProgress
+            iconRed.rotation = currentRotation
 
         }
     }
