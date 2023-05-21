@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         ivMain = findViewById(R.id.iv_main)
         iconRed = findViewById(R.id.icon_red)
 
-        setContentView(R.layout.test)
+        // todo testing xml features
+        // setContentView(R.layout.test)
 
         Picasso.get()
             .load("https://raccoon-city.ru/wp-content/uploads/2021/06/kyb-eydwdya-e1622731650346.jpg")
