@@ -1,6 +1,10 @@
 package com.example.horizonprogressbar
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.ActionMode
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
@@ -25,8 +29,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var iconRed: View
     private lateinit var navMenu: MaterialToolbar
     private lateinit var rootFrame: FrameLayout
+
     private var variety = 1
 
+    private var actionMode: ActionMode? = null
+    @SuppressLint("AppCompatMethod")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -74,6 +81,63 @@ class MainActivity : AppCompatActivity() {
 
                 else -> false
             }
+        }
+
+        ivMain.setOnLongClickListener {
+            if (actionMode != null) {
+                return@setOnLongClickListener false
+            }
+
+            actionMode = startActionMode(object : ActionMode.Callback {
+                override fun onCreateActionMode(
+                    mode: ActionMode?,
+                    menu: Menu?,
+                ): Boolean {
+                    val inflater = mode?.menuInflater
+                    inflater?.inflate(R.menu.context_menu, menu)
+                    mode?.title = "Select option"
+                    return true
+                }
+
+                override fun onPrepareActionMode(
+                    mode: ActionMode?,
+                    menu: Menu?,
+                ): Boolean {
+                    return false
+                }
+
+                override fun onActionItemClicked(
+                    mode: ActionMode?,
+                    item: MenuItem?,
+                ): Boolean {
+                    when (item?.itemId) {
+                        R.id.copy -> Toast.makeText(this@MainActivity, "Copy", Toast.LENGTH_SHORT)
+                            .show()
+
+                        R.id.search_in_web -> Toast.makeText(
+                            this@MainActivity,
+                            "Search",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        R.id.download -> Toast.makeText(
+                            this@MainActivity,
+                            "Search in web",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        R.id.more -> Toast.makeText(this@MainActivity, "More", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    return true
+                }
+
+                override fun onDestroyActionMode(mode: ActionMode?) {
+                    actionMode = null
+                }
+
+            })
+            return@setOnLongClickListener true
         }
 
         startProgress.setOnClickListener {

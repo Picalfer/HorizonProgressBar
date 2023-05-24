@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/copy"
+        android:icon="@drawable/baseline_content_copy_24"
+        android:title="@string/copy"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/search_in_web"
+        android:icon="@drawable/baseline_search_24"
+        android:title="@string/search_in_web"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/download"
+        android:title="@string/download"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/more"
+        android:title="@string/more"
+        app:showAsAction="withText" />
+</menu>

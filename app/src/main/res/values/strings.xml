@@ -6,4 +6,7 @@
     <string name="search">Search</string>
     <string name="more">More</string>
     <string name="dark_theme">Dark theme</string>
+    <string name="copy">Copy</string>
+    <string name="search_in_web">Search in web</string>
+    <string name="download">Download</string>
 </resources>
