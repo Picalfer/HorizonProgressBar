@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.HorizonProgressBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -12,5 +12,16 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#8F2BBA</item>
+        <item name="colorPrimaryVariant">#388F28</item>
+        <item name="colorOnPrimary">#2C115C</item>
+    </style>
+
+    <style name="DefaultTheme.MyButton" parent="ThemeOverlay.MaterialComponents">
+        <item name="android:layout_width">100dp</item>
     </style>
 </resources>

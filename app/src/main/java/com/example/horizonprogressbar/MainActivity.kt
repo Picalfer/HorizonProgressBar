@@ -13,6 +13,8 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.squareup.picasso.Picasso
@@ -31,8 +33,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rootFrame: FrameLayout
 
     private var variety = 1
+    private var dayNightMode = 1
 
     private var actionMode: ActionMode? = null
+
     @SuppressLint("AppCompatMethod")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -183,7 +187,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeTheme() {
-        // TODO:
-        // rootFrame.background = AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
+        if (dayNightMode == 1) {
+            rootFrame.background = AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
+            navMenu.background = AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            dayNightMode = 2
+        } else {
+            rootFrame.background = AppCompatResources.getDrawable(this, R.drawable.bg_gradient)
+            navMenu.background = AppCompatResources.getDrawable(this, R.drawable.bg_gradient)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            dayNightMode = 2
+        }
     }
 }

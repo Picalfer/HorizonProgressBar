@@ -80,12 +80,8 @@
 
             <Button
                 android:id="@+id/startProgress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/button_background"
-                android:text="@string/start_progress"
-                android:textAllCaps="false" />
+                style="@style/MainBtn"
+                android:text="@string/start_progress" />
         </LinearLayout>
 
 

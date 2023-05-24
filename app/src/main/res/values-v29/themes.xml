@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#C43BFF</item>
+        <item name="colorPrimaryVariant">#57D341</item>
+        <item name="colorOnPrimary">#442087</item>
+        <!-- Turns on really dark for all colors when dark mode. -->
+        <item name="android:forceDarkAllowed">true</item>
+    </style>
+</resources>

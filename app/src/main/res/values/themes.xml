@@ -13,4 +13,16 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#C43BFF</item>
+        <item name="colorPrimaryVariant">#57D341</item>
+        <item name="colorPrimaryDark">#7EEF6A</item>
+        <item name="colorOnPrimary">#442087</item>
+    </style>
+
+    <style name="DefaultTheme.MyButton" parent="ThemeOverlay.MaterialComponents">
+        <item name="android:layout_width">100dp</item>
+    </style>
 </resources>
