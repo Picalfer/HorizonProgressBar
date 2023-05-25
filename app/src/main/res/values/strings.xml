@@ -9,4 +9,6 @@
     <string name="copy">Copy</string>
     <string name="search_in_web">Search in web</string>
     <string name="download">Download</string>
+    <string name="example_email_com">example@email.com</string>
+    <string name="subscribe">Subscribe</string>
 </resources>

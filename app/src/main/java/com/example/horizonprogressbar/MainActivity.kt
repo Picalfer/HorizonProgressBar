@@ -50,8 +50,8 @@ class MainActivity : AppCompatActivity() {
         navMenu = findViewById(R.id.top_bar)
         rootFrame = findViewById(R.id.root_frame)
 
-        // todo testing xml features
-        // setContentView(R.layout.test)
+        // todo for testing xml features
+        // setContentView(R.layout.test2)
 
         Picasso.get()
             .load("https://raccoon-city.ru/wp-content/uploads/2021/06/kyb-eydwdya-e1622731650346.jpg")
