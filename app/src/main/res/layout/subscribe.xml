@@ -11,7 +11,8 @@
         android:id="@+id/et_subscribe"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/example_email_com" />
+        android:hint="@string/example_email_com"
+        android:inputType="textEmailAddress" />
 
     <Button
         android:id="@+id/btn_subscribe"

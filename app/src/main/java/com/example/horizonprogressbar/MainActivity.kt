@@ -18,6 +18,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.squareup.picasso.Picasso
+import kotlin.collections.forEach as forEach1
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private var actionMode: ActionMode? = null
 
-    @SuppressLint("AppCompatMethod")
+    @SuppressLint("AppCompatMethod", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -51,7 +52,33 @@ class MainActivity : AppCompatActivity() {
         rootFrame = findViewById(R.id.root_frame)
 
         // todo for testing xml features
-        // setContentView(R.layout.test2)
+        setContentView(R.layout.test3)
+
+        // for test3
+        val btn1 = findViewById<Button>(R.id.button1)
+        val btn2 = findViewById<Button>(R.id.button2)
+        val btn3 = findViewById<Button>(R.id.button3)
+        val btn4 = findViewById<Button>(R.id.button4)
+
+        val btns = listOf<Button>(btn1,btn2,btn3)
+
+        btns.forEach {
+            it.setOnClickListener {
+                it.animate()
+                    .setDuration(300)
+                    .alpha(0f)
+                    .start()
+            }
+        }
+
+        btn4.setOnClickListener {
+            btns.forEach {
+                it.animate()
+                    .setDuration(600)
+                    .alpha(1f)
+                    .start()
+            }
+        }
 
         Picasso.get()
             .load("https://raccoon-city.ru/wp-content/uploads/2021/06/kyb-eydwdya-e1622731650346.jpg")
