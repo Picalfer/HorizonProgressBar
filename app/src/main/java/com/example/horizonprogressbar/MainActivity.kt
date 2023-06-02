@@ -1,11 +1,14 @@
 package com.example.horizonprogressbar
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.View.ALPHA
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.FrameLayout
@@ -248,7 +251,18 @@ class MainActivity : AppCompatActivity() {
 
         rocket.setOnClickListener {
             it.startAnimation(rocketAnimation)
+            ObjectAnimator.ofFloat(it, ALPHA, 1f, 0f)
+                .setDuration(500)
+                .start()
         }
+
+        val animator = ValueAnimator.ofFloat(0f, 1f)
+        animator.addUpdateListener {
+            rocket.alpha = it.animatedValue as Float
+        }
+        animator.duration = 500
+        animator.startDelay = 1000
+        animator.start()
     }
 
     private fun changeTheme() {
