@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/soft_green"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_kopibara"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/kopibara"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/soft_red"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btn_left"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@color/soft_blue"
+            android:text="left"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_down"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_right"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@color/soft_blue"
+            android:text="right"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_down" />
+
+        <Button
+            android:id="@+id/btn_up"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@color/soft_blue"
+            android:text="up"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btn_down"
+            app:layout_constraintEnd_toEndOf="@id/btn_down"
+            app:layout_constraintStart_toStartOf="@id/btn_down" />
+
+        <Button
+            android:id="@+id/btn_down"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="50dp"
+            android:backgroundTint="@color/soft_blue"
+            android:text="down"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_right"
+            app:layout_constraintStart_toEndOf="@+id/btn_left" />
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/soft_blue"
+            android:text="reset"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_right"
+            app:layout_constraintStart_toEndOf="@+id/btn_left" />
+
+        <Button
+            android:id="@+id/btn_rotate_left"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@color/soft_blue"
+            android:text="rotate left"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/btn_left"
+            app:layout_constraintEnd_toStartOf="@+id/btn_left"
+            app:layout_constraintStart_toEndOf="@+id/btn_left" />
+
+        <Button
+            android:id="@+id/btn_rotate_right"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="@color/soft_blue"
+            android:text="rotate right"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/btn_right"
+            app:layout_constraintEnd_toStartOf="@+id/btn_right"
+            app:layout_constraintStart_toEndOf="@+id/btn_right" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

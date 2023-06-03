@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         rootFrame = findViewById(R.id.root_frame)
 
         // todo for testing xml features
-        test4()
+        test5()
 
         val ivAnimation = AnimationUtils.loadAnimation(this, R.anim.iv_animation)
 
@@ -241,6 +241,72 @@ class MainActivity : AppCompatActivity() {
                     .start()
             }
         }
+    }
+
+    @SuppressLint("MissingInflatedId")
+    private fun test5() {
+        setContentView(R.layout.test5)
+
+        val btnUp = findViewById<Button>(R.id.btn_up)
+        val btnDown = findViewById<Button>(R.id.btn_down)
+        val btnLeft = findViewById<Button>(R.id.btn_left)
+        val btnRight = findViewById<Button>(R.id.btn_right)
+        val btnRotateLeft = findViewById<Button>(R.id.btn_rotate_left)
+        val btnRotateRight = findViewById<Button>(R.id.btn_rotate_right)
+        val btnReset = findViewById<Button>(R.id.btn_reset)
+
+        val ivHero = findViewById<ImageView>(R.id.iv_kopibara)
+
+        btnLeft.setOnClickListener {
+            val anim = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_X, ivHero.translationX, ivHero.translationX - 100)
+            anim.duration = 200
+            anim.start()
+        }
+
+        btnRight.setOnClickListener {
+            val anim = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_X, ivHero.translationX, ivHero.translationX + 100)
+            anim.duration = 200
+            anim.start()
+        }
+
+        btnUp.setOnClickListener {
+            val anim = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_Y, ivHero.translationY, ivHero.translationY - 100)
+            anim.duration = 200
+            anim.start()
+        }
+
+        btnDown.setOnClickListener {
+            val anim = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_Y, ivHero.translationY, ivHero.translationY + 100)
+            anim.duration = 200
+            anim.start()
+        }
+
+        btnRotateLeft.setOnClickListener {
+            val anim = ObjectAnimator.ofFloat(ivHero, View.ROTATION, ivHero.rotation, ivHero.rotation - 45)
+            anim.duration = 200
+            anim.start()
+        }
+
+        btnRotateRight.setOnClickListener {
+            val anim = ObjectAnimator.ofFloat(ivHero, View.ROTATION, ivHero.rotation, ivHero.rotation + 45)
+            anim.duration = 200
+            anim.start()
+        }
+
+        btnReset.setOnClickListener {
+            val animRotation = ObjectAnimator.ofFloat(ivHero, View.ROTATION, ivHero.rotation, 0F)
+            animRotation.duration = 200
+            animRotation.start()
+
+            val animTranslationX = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_X, ivHero.translationX, 0F)
+            animTranslationX.duration = 200
+            animTranslationX.start()
+
+            val animTranslationY = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_Y, ivHero.translationY, 0F)
+            animTranslationY.duration = 200
+            animTranslationY.start()
+        }
+
     }
 
     @SuppressLint("MissingInflatedId")
