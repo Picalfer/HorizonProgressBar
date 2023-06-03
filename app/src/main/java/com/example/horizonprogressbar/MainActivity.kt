@@ -1,5 +1,6 @@
 package com.example.horizonprogressbar
 
+import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
@@ -263,6 +264,37 @@ class MainActivity : AppCompatActivity() {
         animator.duration = 500
         animator.startDelay = 1000
         animator.start()
+
+        val btnStart = findViewById<Button>(R.id.btn_start_animation)
+        val btnDoAnim = findViewById<Button>(R.id.btn_do_animation)
+
+        val animationUpdateListener = object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator) {
+                Toast.makeText(this@MainActivity, "Animation start", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "${btnDoAnim.translationY}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onAnimationEnd(animation: Animator) {
+                Toast.makeText(this@MainActivity, "Animation End", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "${btnDoAnim.translationY}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onAnimationCancel(animation: Animator) {
+                Toast.makeText(this@MainActivity, "Animation cancel", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onAnimationRepeat(animation: Animator) {
+                Toast.makeText(this@MainActivity, "Animation repeat", Toast.LENGTH_SHORT).show()
+                println("start")
+            }
+        }
+
+        btnStart.setOnClickListener {
+            val anim = ObjectAnimator.ofFloat(btnDoAnim, View.TRANSLATION_Y, btnDoAnim.translationY, btnDoAnim.translationY + 1000F)
+            anim.duration = 1000
+            anim.addListener(animationUpdateListener)
+            anim.start()
+        }
     }
 
     private fun changeTheme() {
