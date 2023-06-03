@@ -6,6 +6,7 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.ActionMode
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -21,21 +22,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import com.example.horizonprogressbar.databinding.ActivityMainBinding
 import com.google.android.material.appbar.MaterialToolbar
 import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     private var currentProgress: Int = 0
     private var currentSuccess: Int = 0
     private var currentRotation: Float = 45F
-    private lateinit var progressBar: ProgressBar
-    private lateinit var startProgress: Button
-    private lateinit var textSuccess: TextView
-    private lateinit var ivMain: ImageView
-    private lateinit var iconRed: View
-    private lateinit var navMenu: MaterialToolbar
-    private lateinit var rootFrame: FrameLayout
 
     private var variety = 1
     private var dayNightMode = 1
@@ -45,18 +42,10 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("AppCompatMethod", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        progressBar = findViewById(R.id.progressBar)
-        startProgress = findViewById(R.id.startProgress)
-        textSuccess = findViewById(R.id.tvSuccess)
-        ivMain = findViewById(R.id.iv_main)
-        iconRed = findViewById(R.id.icon_red)
-        navMenu = findViewById(R.id.top_bar)
-        rootFrame = findViewById(R.id.root_frame)
+        binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         // todo for testing xml features
-        test5()
+        //test5()
 
         val ivAnimation = AnimationUtils.loadAnimation(this, R.anim.iv_animation)
 
@@ -68,15 +57,15 @@ class MainActivity : AppCompatActivity() {
             .load("https://raccoon-city.ru/wp-content/uploads/2021/06/kyb-eydwdya-e1622731650346.jpg")
             .placeholder(R.drawable.main_logo)
             .error(R.drawable.main_logo)
-            .into(ivMain)
+            .into(binding.ivMain)
 
-        progressBar.max = 100
+        binding.progressBar.max = 100
 
-        navMenu.setNavigationOnClickListener {
+        binding.topBar.setNavigationOnClickListener {
             Toast.makeText(this, "Someday there will be navigation...", Toast.LENGTH_SHORT).show()
         }
 
-        navMenu.setOnMenuItemClickListener {
+        binding.topBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.fav -> {
                     Toast.makeText(this, "Favorites", Toast.LENGTH_SHORT).show()
@@ -98,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        ivMain.setOnLongClickListener {
+        binding.ivMain.setOnLongClickListener {
             if (actionMode != null) {
                 return@setOnLongClickListener false
             }
@@ -155,18 +144,18 @@ class MainActivity : AppCompatActivity() {
             return@setOnLongClickListener true
         }
 
-        startProgress.setOnClickListener {
+        binding.startProgress.setOnClickListener {
 
             if (currentProgress == 100) {
                 if (variety == 1) {
-                    progressBar.setProgressDrawableTiled(
+                    binding.progressBar.setProgressDrawableTiled(
                         ContextCompat.getDrawable(
                             this,
                             R.drawable.custom_progress_bg_revert
                         )
                     )
-                    textSuccess.setTextColor(ContextCompat.getColor(this, R.color.progress_bar_bg))
-                    iconRed.setBackgroundColor(
+                    binding.tvSuccess.setTextColor(ContextCompat.getColor(this, R.color.progress_bar_bg))
+                    binding.iconRed.setBackgroundColor(
                         ContextCompat.getColor(
                             this,
                             R.color.progress_bar_bg
@@ -174,14 +163,14 @@ class MainActivity : AppCompatActivity() {
                     )
                     variety = 2
                 } else {
-                    progressBar.setProgressDrawableTiled(
+                    binding.progressBar.setProgressDrawableTiled(
                         ContextCompat.getDrawable(
                             this,
                             R.drawable.custom_progress_bg
                         )
                     )
-                    textSuccess.setTextColor(ContextCompat.getColor(this, R.color.progress_bar))
-                    iconRed.setBackgroundColor(ContextCompat.getColor(this, R.color.progress_bar))
+                    binding.tvSuccess.setTextColor(ContextCompat.getColor(this, R.color.progress_bar))
+                    binding.iconRed.setBackgroundColor(ContextCompat.getColor(this, R.color.progress_bar))
                     variety = 1
                 }
                 currentProgress = 0
@@ -192,12 +181,12 @@ class MainActivity : AppCompatActivity() {
             currentRotation += 45
 
             if (currentSuccess % 10 == 0) {
-                ivMain.startAnimation(ivAnimation)
+                binding.ivMain.startAnimation(ivAnimation)
             }
 
-            textSuccess.text = currentSuccess.toString()
-            progressBar.progress = currentProgress
-            iconRed.rotation = currentRotation
+            binding.tvSuccess.text = currentSuccess.toString()
+            binding.progressBar.progress = currentProgress
+            binding.iconRed.rotation = currentRotation
         }
     }
 
@@ -365,13 +354,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeTheme() {
         if (dayNightMode == 1) {
-            rootFrame.background = AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
-            navMenu.background = AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
+            binding.rootFrame.background = AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
+            binding.topBar.background = AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             dayNightMode = 2
         } else {
-            rootFrame.background = AppCompatResources.getDrawable(this, R.drawable.bg_gradient)
-            navMenu.background = AppCompatResources.getDrawable(this, R.drawable.bg_gradient)
+            binding.rootFrame.background = AppCompatResources.getDrawable(this, R.drawable.bg_gradient)
+            binding.topBar.background = AppCompatResources.getDrawable(this, R.drawable.bg_gradient)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             dayNightMode = 2
         }
