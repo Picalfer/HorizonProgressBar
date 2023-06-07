@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.ActionMode
 import android.view.LayoutInflater
@@ -48,6 +49,19 @@ class MainActivity : AppCompatActivity() {
         //test5()
 
         val ivAnimation = AnimationUtils.loadAnimation(this, R.anim.iv_animation)
+
+        val animationFrame1 = resources.getDrawable(R.drawable.frame_animation) as AnimationDrawable
+        val animationFrame2 = resources.getDrawable(R.drawable.frame_animation) as AnimationDrawable
+        val animationFrame3 = resources.getDrawable(R.drawable.frame_animation) as AnimationDrawable
+        val animationFrame4 = resources.getDrawable(R.drawable.frame_animation) as AnimationDrawable
+        binding.ivLeftTop?.setBackgroundDrawable(animationFrame1)
+        binding.ivLeftDown?.setBackgroundDrawable(animationFrame2)
+        binding.ivRightTop?.setBackgroundDrawable(animationFrame3)
+        binding.ivRightDown?.setBackgroundDrawable(animationFrame4)
+        animationFrame1.start()
+        animationFrame2.start()
+        animationFrame3.start()
+        animationFrame4.start()
 
         /*ivMain.setOnClickListener {
             it.startAnimation(ivAnimation)

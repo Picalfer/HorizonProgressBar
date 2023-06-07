@@ -78,6 +78,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/iv_left_top"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="top|start"
@@ -85,12 +86,14 @@
         android:background="@mipmap/ic_icon" />
 
     <FrameLayout
+        android:id="@+id/iv_left_down"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="bottom|start"
         android:background="@mipmap/ic_icon" />
 
     <FrameLayout
+        android:id="@+id/iv_right_top"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="top|end"
@@ -98,6 +101,7 @@
         android:background="@mipmap/ic_icon" />
 
     <FrameLayout
+        android:id="@+id/iv_right_down"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="bottom|end"
