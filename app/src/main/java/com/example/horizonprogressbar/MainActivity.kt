@@ -5,6 +5,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.AnimationDrawable
 import android.media.JetPlayer.OnJetEventListener
 import android.os.Bundle
@@ -16,6 +17,7 @@ import android.view.View
 import android.view.View.ALPHA
 import android.view.animation.AnimationSet
 import android.view.animation.AnimationUtils
+import android.view.animation.BounceInterpolator
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -438,8 +440,19 @@ class MainActivity : AppCompatActivity() {
         animatorSet.playTogether(sunAnim, nightAnim)
         animatorSet.play(cloud1Anim).after(sunAnim)
         animatorSet.play(cloud2Anim).after(sunAnim)
+        animatorSet.interpolator = BounceInterpolator()
 
         animatorSet.start()
+
+        // test animation from ShapeShifter.design
+        val animContainer = findViewById<ImageView>(R.id.anim_container)
+        animContainer.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.avd_anim))
+
+        val animation = animContainer.drawable as AnimatedVectorDrawable
+
+        animContainer.setOnClickListener {
+            animation.start()
+        }
     }
 
     private fun changeTheme() {
