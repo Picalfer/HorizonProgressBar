@@ -1,7 +1,9 @@
 package com.example.horizonprogressbar
 
 import android.animation.Animator
+import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
+import android.animation.LayoutTransition
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
@@ -15,12 +17,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.View.ALPHA
+import android.view.animation.Animation
 import android.view.animation.AnimationSet
 import android.view.animation.AnimationUtils
 import android.view.animation.BounceInterpolator
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -29,6 +33,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import com.example.horizonprogressbar.databinding.ActivityMainBinding
+import com.google.android.material.R.animator.m3_card_state_list_anim
 import com.google.android.material.appbar.MaterialToolbar
 import com.squareup.picasso.Picasso
 
@@ -51,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         // todo for testing xml features
-        test6()
+        test7()
 
         val ivAnimation = AnimationUtils.loadAnimation(this, R.anim.iv_animation)
 
@@ -452,6 +457,41 @@ class MainActivity : AppCompatActivity() {
 
         animContainer.setOnClickListener {
             animation.start()
+        }
+    }
+
+    private fun test7() {
+        setContentView(R.layout.test7)
+
+        val container = findViewById<LinearLayout>(R.id.container_btns)
+        val removeBtn = findViewById<Button>(R.id.remove_btn)
+        val addBtn = findViewById<Button>(R.id.add_btn)
+
+        var counter = 0
+
+        container.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
+        container.layoutTransition.setAnimator(
+            LayoutTransition.APPEARING,
+            AnimatorInflater.loadAnimator(
+                this, R.animator.animator
+            )
+        )
+
+        addBtn.setOnClickListener {
+            counter++
+            val btn = Button(this)
+            btn.scaleX = 0f
+            btn.scaleY = 0f
+            btn.text = "Button$counter"
+
+            container.addView(btn)
+        }
+
+        removeBtn.setOnClickListener {
+            if (container.childCount != 0) {
+                counter--
+                container.removeViewAt(container.childCount - 1)
+            }
         }
     }
 
