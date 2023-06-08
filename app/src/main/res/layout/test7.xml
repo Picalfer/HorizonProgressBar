@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/gray"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray">
 
     <Button
         android:id="@+id/add_btn"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/soft_blue"
         android:text="ADD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,23 +17,33 @@
 
     <Button
         android:id="@+id/remove_btn"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/soft_green"
         android:text="REMOVE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_btn" />
 
-    <LinearLayout
-        android:gravity="center"
-        android:id="@+id/container_btns"
-        android:animateLayoutChanges="true"
+
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/remove_btn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/remove_btn">
+
+        <LinearLayout
+            android:id="@+id/container_btns"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:orientation="horizontal" >
+
+        </LinearLayout>
+    </HorizontalScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

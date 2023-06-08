@@ -9,6 +9,7 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.Drawable
 import android.media.JetPlayer.OnJetEventListener
 import android.os.Bundle
 import android.view.ActionMode
@@ -467,6 +468,13 @@ class MainActivity : AppCompatActivity() {
         val removeBtn = findViewById<Button>(R.id.remove_btn)
         val addBtn = findViewById<Button>(R.id.add_btn)
 
+        val drawableList = listOf<Int>(
+            R.drawable.america,
+            R.drawable.back_to_future,
+            R.drawable.matrix,
+            R.drawable.pulpfiction
+        )
+
         var counter = 0
 
         container.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
@@ -478,19 +486,22 @@ class MainActivity : AppCompatActivity() {
         )
 
         addBtn.setOnClickListener {
-            counter++
-            val btn = Button(this)
+            if (counter > drawableList.size - 1) {
+                counter = 0
+            }
+            val btn = ImageView(this)
             btn.scaleX = 0f
             btn.scaleY = 0f
-            btn.text = "Button$counter"
+            btn.setImageDrawable(AppCompatResources.getDrawable(this, drawableList[counter]))
 
             container.addView(btn)
+            counter++
         }
 
         removeBtn.setOnClickListener {
             if (container.childCount != 0) {
-                counter--
                 container.removeViewAt(container.childCount - 1)
+                counter--
             }
         }
     }
