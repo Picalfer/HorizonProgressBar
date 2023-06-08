@@ -1,10 +1,12 @@
 package com.example.horizonprogressbar
 
 import android.animation.Animator
+import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.graphics.drawable.AnimationDrawable
+import android.media.JetPlayer.OnJetEventListener
 import android.os.Bundle
 import android.view.ActionMode
 import android.view.LayoutInflater
@@ -12,6 +14,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.View.ALPHA
+import android.view.animation.AnimationSet
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.FrameLayout
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         // todo for testing xml features
-        //test5()
+        test6()
 
         val ivAnimation = AnimationUtils.loadAnimation(this, R.anim.iv_animation)
 
@@ -168,7 +171,12 @@ class MainActivity : AppCompatActivity() {
                             R.drawable.custom_progress_bg_revert
                         )
                     )
-                    binding.tvSuccess.setTextColor(ContextCompat.getColor(this, R.color.progress_bar_bg))
+                    binding.tvSuccess.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.progress_bar_bg
+                        )
+                    )
                     binding.iconRed.setBackgroundColor(
                         ContextCompat.getColor(
                             this,
@@ -183,8 +191,18 @@ class MainActivity : AppCompatActivity() {
                             R.drawable.custom_progress_bg
                         )
                     )
-                    binding.tvSuccess.setTextColor(ContextCompat.getColor(this, R.color.progress_bar))
-                    binding.iconRed.setBackgroundColor(ContextCompat.getColor(this, R.color.progress_bar))
+                    binding.tvSuccess.setTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.progress_bar
+                        )
+                    )
+                    binding.iconRed.setBackgroundColor(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.progress_bar
+                        )
+                    )
                     variety = 1
                 }
                 currentProgress = 0
@@ -261,37 +279,59 @@ class MainActivity : AppCompatActivity() {
         val ivHero = findViewById<ImageView>(R.id.iv_kopibara)
 
         btnLeft.setOnClickListener {
-            val anim = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_X, ivHero.translationX, ivHero.translationX - 100)
+            val anim = ObjectAnimator.ofFloat(
+                ivHero,
+                View.TRANSLATION_X,
+                ivHero.translationX,
+                ivHero.translationX - 100
+            )
             anim.duration = 200
             anim.start()
         }
 
         btnRight.setOnClickListener {
-            val anim = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_X, ivHero.translationX, ivHero.translationX + 100)
+            val anim = ObjectAnimator.ofFloat(
+                ivHero,
+                View.TRANSLATION_X,
+                ivHero.translationX,
+                ivHero.translationX + 100
+            )
             anim.duration = 200
             anim.start()
         }
 
         btnUp.setOnClickListener {
-            val anim = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_Y, ivHero.translationY, ivHero.translationY - 100)
+            val anim = ObjectAnimator.ofFloat(
+                ivHero,
+                View.TRANSLATION_Y,
+                ivHero.translationY,
+                ivHero.translationY - 100
+            )
             anim.duration = 200
             anim.start()
         }
 
         btnDown.setOnClickListener {
-            val anim = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_Y, ivHero.translationY, ivHero.translationY + 100)
+            val anim = ObjectAnimator.ofFloat(
+                ivHero,
+                View.TRANSLATION_Y,
+                ivHero.translationY,
+                ivHero.translationY + 100
+            )
             anim.duration = 200
             anim.start()
         }
 
         btnRotateLeft.setOnClickListener {
-            val anim = ObjectAnimator.ofFloat(ivHero, View.ROTATION, ivHero.rotation, ivHero.rotation - 45)
+            val anim =
+                ObjectAnimator.ofFloat(ivHero, View.ROTATION, ivHero.rotation, ivHero.rotation - 45)
             anim.duration = 200
             anim.start()
         }
 
         btnRotateRight.setOnClickListener {
-            val anim = ObjectAnimator.ofFloat(ivHero, View.ROTATION, ivHero.rotation, ivHero.rotation + 45)
+            val anim =
+                ObjectAnimator.ofFloat(ivHero, View.ROTATION, ivHero.rotation, ivHero.rotation + 45)
             anim.duration = 200
             anim.start()
         }
@@ -301,11 +341,13 @@ class MainActivity : AppCompatActivity() {
             animRotation.duration = 200
             animRotation.start()
 
-            val animTranslationX = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_X, ivHero.translationX, 0F)
+            val animTranslationX =
+                ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_X, ivHero.translationX, 0F)
             animTranslationX.duration = 200
             animTranslationX.start()
 
-            val animTranslationY = ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_Y, ivHero.translationY, 0F)
+            val animTranslationY =
+                ObjectAnimator.ofFloat(ivHero, View.TRANSLATION_Y, ivHero.translationY, 0F)
             animTranslationY.duration = 200
             animTranslationY.start()
         }
@@ -340,12 +382,14 @@ class MainActivity : AppCompatActivity() {
         val animationUpdateListener = object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {
                 Toast.makeText(this@MainActivity, "Animation start", Toast.LENGTH_SHORT).show()
-                Toast.makeText(this@MainActivity, "${btnDoAnim.translationY}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "${btnDoAnim.translationY}", Toast.LENGTH_SHORT)
+                    .show()
             }
 
             override fun onAnimationEnd(animation: Animator) {
                 Toast.makeText(this@MainActivity, "Animation End", Toast.LENGTH_SHORT).show()
-                Toast.makeText(this@MainActivity, "${btnDoAnim.translationY}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "${btnDoAnim.translationY}", Toast.LENGTH_SHORT)
+                    .show()
             }
 
             override fun onAnimationCancel(animation: Animator) {
@@ -359,21 +403,56 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnStart.setOnClickListener {
-            val anim = ObjectAnimator.ofFloat(btnDoAnim, View.TRANSLATION_Y, btnDoAnim.translationY, btnDoAnim.translationY + 1000F)
+            val anim = ObjectAnimator.ofFloat(
+                btnDoAnim,
+                View.TRANSLATION_Y,
+                btnDoAnim.translationY,
+                btnDoAnim.translationY + 1000F
+            )
             anim.duration = 1000
             anim.addListener(animationUpdateListener)
             anim.start()
         }
     }
 
+    private fun test6() {
+        setContentView(R.layout.test6)
+        val sun = findViewById<ImageView>(R.id.sun)
+        val cloud1 = findViewById<ImageView>(R.id.cloud1)
+        val cloud2 = findViewById<ImageView>(R.id.cloud2)
+        val night = findViewById<View>(R.id.night)
+
+        val sunAnim = ObjectAnimator.ofFloat(sun, View.TRANSLATION_Y, -1200f)
+        sunAnim.duration = 1500
+
+        val nightAnim = ObjectAnimator.ofFloat(night, View.ALPHA, 0f)
+        nightAnim.duration = 2000
+
+        val cloud1Anim = ObjectAnimator.ofFloat(cloud1, View.TRANSLATION_X, 700f)
+        cloud1Anim.duration = 1000
+
+        val cloud2Anim = ObjectAnimator.ofFloat(cloud2, View.TRANSLATION_X, -700f)
+        cloud2Anim.duration = 1000
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(sunAnim, nightAnim)
+        animatorSet.play(cloud1Anim).after(sunAnim)
+        animatorSet.play(cloud2Anim).after(sunAnim)
+
+        animatorSet.start()
+    }
+
     private fun changeTheme() {
         if (dayNightMode == 1) {
-            binding.rootFrame.background = AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
-            binding.topBar.background = AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
+            binding.rootFrame.background =
+                AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
+            binding.topBar.background =
+                AppCompatResources.getDrawable(this, R.drawable.bg_red_gradient)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             dayNightMode = 2
         } else {
-            binding.rootFrame.background = AppCompatResources.getDrawable(this, R.drawable.bg_gradient)
+            binding.rootFrame.background =
+                AppCompatResources.getDrawable(this, R.drawable.bg_gradient)
             binding.topBar.background = AppCompatResources.getDrawable(this, R.drawable.bg_gradient)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             dayNightMode = 2
