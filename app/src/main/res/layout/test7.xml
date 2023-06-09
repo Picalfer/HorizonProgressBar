@@ -6,6 +6,7 @@
     android:background="@color/gray">
 
     <Button
+        android:stateListAnimator="@animator/elevation"
         android:id="@+id/add_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -16,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:stateListAnimator="@animator/elevation"
         android:id="@+id/remove_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
